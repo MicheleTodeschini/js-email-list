@@ -17,6 +17,16 @@ const emails = []
 function randomMail(num) {
     for (let i = 0; i < num; i++) {
         fetch(url)
-            .then(Response)
+            .then(Response => Response.json())
+            .then(dataReceived => {
+                let email = dataReceived.response;
+                emails.push(email);
+                let li = document.createElement('li');
+                li.textContent = email
+                listEmail.appendChild(li)
+
+            })
     }
 }
+
+randomMail(10);
